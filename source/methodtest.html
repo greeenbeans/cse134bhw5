@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-S2F7RRCL1D"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-S2F7RRCL1D");
+    </script>
+    <meta charset="utf-8" />
+    <title>Calling Endpoints</title>
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+    <script src="/scripts/purify.min.js"></script>
+    <link rel="stylesheet" href="/style/methodstyle.css" />
+  </head>
+
+  <body>
+    <h1>Calling Endpoints</h1>
+    <hr />
+    <form>
+      <label for="id">ID:</label><br />
+      <input type="text" id="id" name="id" /><br />
+      <label for="article-name">article name: </label><br />
+      <input type="text" id="article-name" name="article-name" />
+      <label for="article-body">article body: </label><br />
+      <textarea id="article-body" name="article-body"></textarea>
+      <input type="text" id="date" name="date" value="" />
+    </form>
+    <button type="button" class="button" id="getBtn">Get</button>
+    <button type="button" class="button" id="postBtn">Post</button>
+    <button type="button" class="button" id="putBtn">Put</button>
+    <button type="button" class="button" id="deleteBtn">Delete</button>
+    <hr />
+    <output id="output-tag">output</output>
+    <script>
+      const putBtn = document.getElementById("putBtn");
+      const postBtn = document.getElementById("postBtn");
+      const getBtn = document.getElementById("getBtn");
+      const deleteBtn = document.getElementById("deleteBtn");
+
+      const datefield = document.getElementById("date");
+      datefield.value = Date();
+
+      // putBtn.addEventListener("click", function () {
+      //   xhttp.open("PUT", "https://httpbin.org/put");
+      //   xhttp.send();
+      // });
+
+      postBtn.addEventListener("click", function () {
+        let formData = new FormData();
+        formData.append("id", document.getElementById("id").value);
+        formData.append(
+          "article-name",
+          document.getElementById("article-name").value
+        );
+        formData.append(
+          "article-body",
+          document.getElementById("article-body").value
+        );
+        formData.append("date", document.getElementById("date").value);
+
+        fetch("https://httpbin.org/post", {
+          body: formData,
+          method: "post",
+        })
+          .then(function (res) {
+            console.log(res.json());
+          })
+          .then(function (data) {
+            console.log(JSON.stringify(data));
+          });
+      });
+
+      getBtn.addEventListener("click", function () {
+        let res = fetch("https://httpbin.org/get");
+        console.log(res);
+      });
+
+      // deleteBtn.addEventListener("click", function () {
+      //   xhttp.open("DELETE", "https://httpbin.org/delete");
+      //   xhttp.send();
+      // });
+    </script>
+  </body>
+</html>

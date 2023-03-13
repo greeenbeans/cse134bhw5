@@ -15,28 +15,28 @@
     </script>
     <meta charset="utf-8" />
     <title></title>
-    <link rel="stylesheet" href="blog.css">
+    <link rel="stylesheet" href="/style/blog.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script type="module" src="styledblog.js"></script>
+    <script type="module" src="/scripts/styledblog.js"></script>
 </head>
 
 <body>
     <div class="card">
 
-        <a href="./styledcrud.html" class="author_name">Rahil Shah</a>
+        <a href="/source/styledcrud.html" class="author_name">Rahil Shah</a>
         <span class="author_bio">Developer and cybersecurity enthusiast</span>
         <nav class="nav">
             <ul class="nav-list">
                 <li class="nav-item">
-                    <a href="./index.html">home</a>
+                    <a href="/index.html">home</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="./about.html">About Me</a>
+                    <a href="/source/about.html">About Me</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="./interest.html">fun stuff</a>
+                    <a href="/source/interest.html">fun stuff</a>
                 </li>
 
             </ul>
@@ -86,7 +86,7 @@
     </dialog>
 
     <script type="module">
-        import { addthing, updateThing, isNumeric, next } from "./styledblog.js";
+        import { addthing, updateThing, isNumeric, next } from "/scripts/styledblog.js";
         let counter = 0;
         //Some base entries that will be stored in backend next assignment
         if (window.localStorage.getItem('0') === null) {
