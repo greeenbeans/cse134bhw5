@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S2F7RRCL1D"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-S2F7RRCL1D");
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <title>Rahil Shah's Interests</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+</head>
+
+<body>
+  <main>
+    <section class="interests">
+      <h1>My Interests</h1>
+      <hr />
+      <h3>Music!</h3>
+      <p>I love music and going to concerts. Here are some songs I like</p>
+      <article class="music">
+
+
+        <ul id="episodes">
+          <li>
+            <button class="song" data-spotify-id="https://open.spotify.com/track/1udwFobQ1JoOdWPQrp2b6u?si=dbd277620f3f42ae">
+              Surround Sound - JID feat. 21 Savage & Baby Tate
+            </button>
+          </li>
+          <li>
+            <button class="song" data-spotify-id="https://open.spotify.com/track/3WBRfkOozHEsG0hbrBzwlm?si=42a72a4d48ff4055">
+              Everything Goes On - Porter Robinson
+            </button>
+          </li>
+          <li>
+            <button class="song" data-spotify-id="https://open.spotify.com/track/4OKjD1bhRWP5oxNovZcV05?si=7cb2ef3ac7644152">
+              Anaheim - NIKI
+            </button>
+          </li>
+        </ul>
+
+        <div id="embed-iframe"></div>
+        <script src="https://open.spotify.com/embed-podcast/iframe-api/v1" async>
+        </script>
+        <script type="text/javascript">
+          window.onSpotifyIframeApiReady = (IFrameAPI) => {
+            let element = document.getElementById('embed-iframe');
+            let options = {
+              width: '60%',
+              height: '200',
+              uri: 'https://open.spotify.com/track/6AoG52kxfptY0QBQnjuQOe?si=67a0b303acc0462a'
+            };
+            let callback = (EmbedController) => {
+              document.querySelectorAll('ul#episodes > li > button').forEach(
+                episode => {
+                  episode.addEventListener('click', () => {
+                    EmbedController.loadUri(episode.dataset.spotifyId)
+                  });
+                })
+            };
+            IFrameAPI.createController(element, options, callback);
+          };
+        </script>
+
+      </article>
+
+      <article>
+        <h3>Photography</h3>
+        <details>
+          <summary>My Pictures</summary>
+          <p>
+            I started taking pictures a long time ago, here are some of my
+            favs
+          </p>
+          <div class="pics">
+            <figure>
+              <img src="IMG_0233.jpg" alt="picture of sky at night" width="300" height="360" />
+              <figcaption><em>Sky Picture</em></figcaption>
+            </figure>
+            <figure>
+              <picture>
+                <img src="IMG_0306.jpg" alt="picture of sky at night 2" width="300" height="360" />
+              </picture>
+
+              <figcaption><em>Sky Picture 2</em></figcaption>
+            </figure>
+          </div>
+        </details>
+      </article>
+    </section>
+  </main>
+</body>
+
+</html>

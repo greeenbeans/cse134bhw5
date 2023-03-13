@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S2F7RRCL1D"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-S2F7RRCL1D');
+    </script>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <script type="module" src="blog.js"></script>
+</head>
+
+<body>
+
+    <ul id="posts">
+    </ul>
+
+    <dialog id="addBlog">
+        <form method="dialog">
+            <input type="text" id="post-date" name="post-date">
+            <input type="text" id="post-title" name="post-title">
+            <textarea id="post-summary"></textarea>
+
+            <button value="cancel">Cancel</button>
+            <button id="confirmBtn" value="default">Confirm</button>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog id="editBlog">
+        <form method="dialog">
+            <input type="text" id="post-date-edit" name="post-date-edit">
+            <input type="text" id="post-title-edit" name="post-title-edit">
+            <textarea id="post-summary-edit"></textarea>
+
+            <button value="cancel-edit">Cancel</button>
+            <button id="confirmBtn-edit" value="default">Confirm</button>
+            </div>
+        </form>
+    </dialog>
+
+    <p id="buttonLoc">
+        <button id="showDialog">Add Blog</button>
+    </p>
+    <output id="output"></output>
+
+    <script type="module">
+
+        //check styledcrud for better documentation
+
+        import { addthing, updateThing, isNumeric, next } from "./blog.js";
+        let counter = 0;
+        if (window.localStorage.getItem('0') === null) {
+            window.localStorage.setItem('0', `{ "d" : "10/16/2021", "t" :"how to mow a lawn", "s": "In this installment of the how to series, we will teach you the ins and outs of lawn mowing"}`);
+        }
+        if (window.localStorage.getItem('1') === null) {
+            window.localStorage.setItem('1', `{ "d" : "10/23/2021", "t" :"how to climb a boulder", "s":"In this installment of the how to series, we will teach you how to climb a boulder"}`);
+        }
+        if (window.localStorage.getItem('2') === null) {
+            window.localStorage.setItem('2', `{ "d" : "12/8/2021", "t" :"Why Lebron James is secretly 75 years old", "s":"This week in conspiracy theories, we're going to explore the theory that lebron james secretly roaming the earth for 75 years"}`);
+        }
+
+        //show dialog when clicking the addbutton
+        const showButton = document.getElementById('showDialog');
+        const addBlog = document.getElementById('addBlog');
+
+        const date = addBlog.querySelector("#post-date");
+        const title = addBlog.querySelector("#post-title");
+        const summary = document.getElementById("post-summary");
+        console.log(typeof (localStorage.key))
+        let keys = Array();
+        for (let i = 0, len = localStorage.length; i < len; ++i) {
+            keys.push(localStorage.key(i));
+        }
+        keys.sort();
+        for (let i = 0, len = keys.length; i < len; ++i) {
+            if (isNumeric(keys[i])) {
+                console.log(keys[i]);
+                addthing(date, title, summary, parseInt(keys[i]));
+                counter = Math.max(counter, parseInt(keys[i]));
+            }
+        }
+
+
+        const updateDate = editBlog.querySelector("#post-date-edit");
+        const updateTitle = editBlog.querySelector("#post-title-edit");
+        const updateSummary = document.getElementById("post-summary-edit");
+
+
+
+
+        showButton.addEventListener('click', () => {
+            addBlog.showModal();
+        });
+
+        //fields of dialog button
+
+        const confirmBtn = addBlog.querySelector('#confirmBtn');
+
+        confirmBtn.addEventListener("click", () => {
+            addthing(date, title, summary, counter);
+            counter = counter + 1;
+
+        });
+
+        const confirmBtnEdit = editBlog.querySelector('#confirmBtn-edit');
+
+        confirmBtnEdit.addEventListener("click", () => {
+            updateThing(updateDate, updateTitle, updateSummary, next);
+        });
+
+    </script>
+
+
+</body>
+
+</html>
