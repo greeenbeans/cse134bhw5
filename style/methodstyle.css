@@ -38,3 +38,15 @@ button {
 button:hover {
     background: darkgreen;
 }
+input{
+    width: 18rem;
+    margin-bottom: 20px;
+}
+
+textarea{
+    width:18rem;
+    height:9ch;
+    margin-bottom: 20px;
+}
+
+
